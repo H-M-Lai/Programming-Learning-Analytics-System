@@ -6,8 +6,7 @@
 using namespace std;
 
 
-// Structures
-// =====================
+// Basic data structures for Task 1.
 
 struct Learner {
     string learnerID;
@@ -30,16 +29,14 @@ struct Session {
 };
 
 
-// Global Variables (extern)
-// =====================
+// Shared Task 1 state.
 
 extern Learner registeredLearners[MAX_LEARNERS];
 extern int registeredCount;
 extern Session session;
 
 
-// Function Prototypes
-// =====================
+// Task 1 function declarations.
 
 void registerLearner();
 void joinSession();

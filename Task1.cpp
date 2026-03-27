@@ -4,7 +4,7 @@
 
 using namespace std;
 
-// Define global variables
+// Shared Task 1 state.
 Learner registeredLearners[MAX_LEARNERS];
 int registeredCount = 0;
 Session session = {0, {}, 0, 0, 0, {}, 0, 0, 0};
@@ -52,8 +52,7 @@ static bool isBlank(const string& s) {
 }
 
 
-// Register Learner
-// =====================
+// Register a new learner.
 void registerLearner() {
     string id, name;
 
@@ -94,8 +93,7 @@ void registerLearner() {
 }
 
 
-// Join Session
-// =====================
+// Add learner into active queue or waiting queue.
 void joinSession() {
     string id;
     cout << "Enter Learner ID: ";
@@ -143,8 +141,7 @@ void joinSession() {
 }
 
 
-// Exit Session
-// =====================
+// Remove one learner from active queue and promote from waiting queue.
 void exitSession() {
     if (session.activeCount == 0) {
         cout << "No learners in active session.\n";
@@ -166,8 +163,7 @@ void exitSession() {
 }
 
 
-// Display Registered Learners
-// =====================
+// Show all registered learners.
 void displayRegisteredLearners() {
     if (registeredCount == 0) {
         cout << "No registered learners.\n";
@@ -181,10 +177,9 @@ void displayRegisteredLearners() {
 }
 
 
-// Display Session Status
-// =====================
+// Show session capacity, active queue, and waiting queue.
 void displaySessionStatus() {
-    // Added visibility of current capacity
+    // Show current capacity and queue counts.
     cout << "\n--- SESSION CONFIGURATION ---\n";
     cout << "Current Capacity Limit: " << session.capacity << endl;
     cout << "Active Count: " << session.activeCount << (session.activeCount > session.capacity ? " (OVER CAPACITY)" : "") << " / " << session.capacity << endl;
@@ -205,8 +200,7 @@ void displaySessionStatus() {
     }
 }
 
-// Unregister/Remove Learner
-// =====================
+// Remove a learner from registration list.
 void unregisterLearner() {
     string id;
     cout << "Enter Learner ID to remove: ";
@@ -218,7 +212,7 @@ void unregisterLearner() {
         return;
     }
 
-    // Shift array to remove the learner
+    // Shift remaining records left to fill the gap.
     for (int i = index; i < registeredCount - 1; i++) {
         registeredLearners[i] = registeredLearners[i + 1];
     }
@@ -227,8 +221,7 @@ void unregisterLearner() {
 }
 
 
-// Configure Session
-// =====================
+// Update session capacity.
 void configureSession() {
     int cap;
     cout << "Enter new session capacity (max " << MAX_LEARNERS << "): ";
